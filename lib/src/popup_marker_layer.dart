@@ -63,6 +63,26 @@ class PopupMarkerLayer extends StatelessWidget {
             ),
           );
         }
+        
+        final markerRotate = widget.layerOptions.rotate;
+
+          Widget markerWidget;
+          if (marker.rotate ?? markerRotate ?? false) {
+            final markerRotateOrigin =
+                marker.rotateOrigin ?? widget.layerOptions.rotateOrigin;
+            final markerRotateAlignment =
+                marker.rotateAlignment ?? widget.layerOptions.rotateAlignment;
+
+            // Counter rotated marker to the map rotation
+            markerWidget = Transform.rotate(
+              angle: -widget.map.rotationRad,
+              origin: markerRotateOrigin,
+              alignment: markerRotateAlignment,
+              child: markerWithGestureDetector,
+            );
+          } else {
+            markerWidget = markerWithGestureDetector;
+          }
 
         markers.add(
           MarkerPopup(
