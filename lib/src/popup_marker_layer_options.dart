@@ -24,6 +24,7 @@ class PopupMarkerLayerOptions extends LayerOptions {
     @required this.popupBuilder,
     popupController,
     rebuild,
+    bool? markerRotate = true,
   })  : this.popupController = popupController ?? PopupController(),
-        super(rebuild: rebuild);
+        super(rebuild: rebuild, rotate: markerRotate);
 }
